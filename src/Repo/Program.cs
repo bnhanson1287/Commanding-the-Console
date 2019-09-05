@@ -10,9 +10,15 @@ namespace Repo
 {
     class Program
     {
+        const string API_BASE = "https://gitignore.io/api/";
+        const string API_LINES = API_BASE + "list?format=lines";
         static void Main(string[] args)
         {
-            WriteLine("Hello World");
+            //Use he HttpClient to grab content from a website
+            var client = new HttpClient();
+            var templateNames = client.GetAsync(API_LINES).GetAwaiter().GetResult();
+
+            WriteLine(templateNames);
         }
 
     }
